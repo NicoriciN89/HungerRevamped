@@ -1,0 +1,60 @@
+{
+  "English": {
+    "HR.SEC_FOOD":              "Ruined Food",
+    "HR.RUINED_EAT":            "Can eat ruined food",
+    "HR.DESC_RUINED_EAT":       "All ruined food is inedible. Ruined canned food can still be harvested for a recycled can.",
+    "HR.RUINED_COOK":           "Can cook ruined food",
+    "HR.DESC_RUINED_COOK":      "If disabled, placing ruined food on a fire will not improve its condition.",
+
+    "HR.SEC_POISON":            "Food Poisoning",
+    "HR.DELAYED_POISON":        "Delayed Food Poisoning",
+    "HR.DESC_DELAYED_POISON":   "Adds an incubation period of 4–16 hours before food poisoning takes effect.",
+    "HR.REALISTIC_POISON":      "Gradual Poisoning Probability",
+    "HR.DESC_REALISTIC_POISON": "Risk scales gradually with condition (75%+ safe, 15%− high risk) and with the proportion eaten.",
+    "HR.REMOVE_IMMUNITY":       "Remove Cooking Lv.5 Immunity",
+    "HR.DESC_REMOVE_IMMUNITY":  "When enabled, reaching Cooking level 5 no longer grants full immunity to food poisoning.",
+
+    "HR.SEC_COOKING":           "Cooking",
+    "HR.FIX_EXPLOIT":           "Fix Cooking Skill Exploit",
+    "HR.DESC_FIX_EXPLOIT":      "Skill points are awarded proportionally to the amount of meat cooked. Cooking ruined food gives no points.",
+    "HR.COOK_DOUBLES":          "Cooking Doubles Condition",
+    "HR.DESC_COOK_DOUBLES":     "The cooked item has exactly double the condition of the raw item, rather than a flat +50%.",
+
+    "HR.CUSTOM_CALORIES":       "Starting Stored Calories",
+    "HR.DESC_CUSTOM_CALORIES":  "Body-fat calories at the start of a Custom Mode game (0…20 000).",
+
+    "HR.HARVEST_CAN":           "Harvest Can",
+    "HR.HARVESTING":            "Harvesting Can...",
+    "HR.HARVEST_CANCELLED":     "Harvest cancelled.",
+    "HR.NO_ITEM_SELECTED":      "No item selected."
+  },
+  "Russian": {
+    "HR.SEC_FOOD":              "Испорченная еда",
+    "HR.RUINED_EAT":            "Можно есть испорченное",
+    "HR.DESC_RUINED_EAT":       "Вся испорченная еда несъедобна. Испорченные консервы можно разобрать для получения пустой банки.",
+    "HR.RUINED_COOK":           "Можно готовить испорченное",
+    "HR.DESC_RUINED_COOK":      "Если выключено, приготовление испорченной еды не улучшит её состояние.",
+
+    "HR.SEC_POISON":            "Пищевое отравление",
+    "HR.DELAYED_POISON":        "Отложенное отравление",
+    "HR.DESC_DELAYED_POISON":   "Добавляет инкубационный период 4–16 часов до начала отравления.",
+    "HR.REALISTIC_POISON":      "Постепенная вероятность отравления",
+    "HR.DESC_REALISTIC_POISON": "Риск плавно растёт со снижением состояния еды (75%+ — безопасно, 15%− — высокий риск) и зависит от количества съеденного.",
+    "HR.REMOVE_IMMUNITY":       "Убрать иммунитет 5 ур. готовки",
+    "HR.DESC_REMOVE_IMMUNITY":  "Если включено, 5 уровень навыка готовки больше не даёт полный иммунитет к пищевому отравлению.",
+
+    "HR.SEC_COOKING":           "Готовка",
+    "HR.FIX_EXPLOIT":           "Фикс эксплойта скилла готовки",
+    "HR.DESC_FIX_EXPLOIT":      "Очки начисляются пропорционально количеству приготовленного мяса. Испорченная еда очков не даёт.",
+    "HR.COOK_DOUBLES":          "Готовка удваивает состояние",
+    "HR.DESC_COOK_DOUBLES":     "Готовая еда имеет ровно вдвое большее состояние, чем сырая, а не просто +50%.",
+
+    "HR.CUSTOM_CALORIES":       "Начальные запасы калорий",
+    "HR.DESC_CUSTOM_CALORIES":  "Калории в жировых запасах в начале игры в Custom Mode (0…20 000).",
+
+    "HR.HARVEST_CAN":           "Разобрать банку",
+    "HR.HARVESTING":            "Разбираем банку...",
+    "HR.HARVEST_CANCELLED":     "Разборка отменена.",
+    "HR.NO_ITEM_SELECTED":      "Предмет не выбран."
+  }
+}

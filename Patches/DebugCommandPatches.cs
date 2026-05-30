@@ -1,0 +1,72 @@
+#nullable disable
+using HarmonyLib;
+using UnityEngine;
+using Il2Cpp;
+
+namespace HungerRevamped {
+	internal static class DebugCommandPatches {
+
+		[HarmonyPatch(typeof(ConsoleManager), "RegisterCommands")]
+		private static class AddConsoleCommands {
+			private static void Postfix() {
+				uConsole.RegisterCommand("get_stored_calories",        LogReturn(GetStoredCalories));
+				uConsole.RegisterCommand("set_stored_calories",        new Action(SetStoredCalories));
+				uConsole.RegisterCommand("get_calorie_burn",           LogReturn(GetCalorieBurnRate));
+				uConsole.RegisterCommand("get_calorie_transfer",       LogReturn(GetCalorieTransferRate));
+				uConsole.RegisterCommand("get_well_fed_hunger_score",  LogReturn(GetWellFedHungerScore));
+				uConsole.RegisterCommand("set_well_fed_hunger_score",  new Action(SetWellFedHungerScore));
+				uConsole.RegisterCommand("get_deferred_food_poisonings", new Action(GetDeferredFoodPoisonings));
+			}
+
+			private static object GetStoredCalories() {
+				if (!HungerRevamped.HasInstance) return "HungerRevamped not active";
+				return HungerRevamped.Instance.storedCalories;
+			}
+
+			private static void SetStoredCalories() {
+				if (!HungerRevamped.HasInstance) { uConsole.Log("HungerRevamped not active"); return; }
+				if (uConsole.GetNumParameters() == 0) return;
+				float calories = Mathf.Clamp(uConsole.GetFloat(), 0f, (float) Tuning.maximumStoredCalories);
+				HungerRevamped.Instance.storedCalories = calories;
+			}
+
+			private static object GetCalorieBurnRate() {
+				if (!HungerRevamped.HasInstance) return "HungerRevamped not active";
+				return HungerRevamped.Instance.hunger.GetCurrentCalorieBurnPerHour();
+			}
+
+			private static object GetCalorieTransferRate() {
+				if (!HungerRevamped.HasInstance) return "HungerRevamped not active";
+				return HungerRevamped.Instance.GetStoredCaloriesChangePerHour();
+			}
+
+			private static object GetWellFedHungerScore() {
+				if (!HungerRevamped.HasInstance) return "HungerRevamped not active";
+				return HungerRevamped.Instance.wellFedHungerScore;
+			}
+
+			private static void SetWellFedHungerScore() {
+				if (!HungerRevamped.HasInstance) { uConsole.Log("HungerRevamped not active"); return; }
+				if (uConsole.GetNumParameters() == 0) return;
+				float hungerScore = Mathf.Clamp(uConsole.GetFloat(), -1f, 1f);
+				HungerRevamped.Instance.wellFedHungerScore = hungerScore;
+			}
+
+			private static void GetDeferredFoodPoisonings() {
+				if (!HungerRevamped.HasInstance) { uConsole.Log("HungerRevamped not active"); return; }
+				float timeNow = GameManager.GetTimeOfDayComponent().GetHoursPlayedNotPaused();
+				foreach (DeferredFoodPoisoning dfp in HungerRevamped.Instance.deferredFoodPoisonings) {
+					float dHours = dfp.start - timeNow;
+					uConsole.Log("Hour " + dfp.start + " caused by " + dfp.cause + " (in " + dHours + " hours)");
+				}
+			}
+
+			private static Action LogReturn(Func<object> commandReturn) {
+				return () => {
+					object result = commandReturn();
+					uConsole.Log(result == null ? "(null)" : result.ToString());
+				};
+			}
+		}
+	}
+}
