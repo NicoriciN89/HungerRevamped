@@ -1,130 +1,154 @@
-# Hunger Revamped mod for *The Long Dark*
+# HungerRevamped — mod for *The Long Dark*
 
-*The Long Dark's* hunger system has some problems:
-- It can't differentiate between starving for a few days and starving for months
-- It allows players to get by on 600 calories per day, forever
-- Calorie deficits don't need to be compensated
-- Long-time starvation barely affects the player
+> **Fork of the original [HungerRevamped](https://github.com/zeobviouslyfakeacc/HungerRevamped) by BaltaZar.**  
+> v2.2.0 adds stability fixes, null safety, performance improvements, and full EN/RU localization.  
+> See [CHANGELOG.md](CHANGELOG.md) for the full list of changes.
 
-### Hunger Revamped
+---
 
-Despite what Hinterland claims, there is simply no way to fix these problems
-with just one hunger variable - there is just not enough information.
-That's why Hunger Revamped **splits nourishment into 'hunger' and 'stored calories'**.
+## Why this mod exists
+
+*The Long Dark's* default hunger system has fundamental problems:
+
+- It cannot differentiate between starving for a few days and starving for months
+- Players can survive indefinitely on only 600 calories per day
+- Calorie deficits never need to be compensated
+- Long-term starvation barely affects the player
+
+## How it works
+
+Hunger Revamped **splits nourishment into two values: hunger and stored calories**.
 
 > ![Hunger and stored calories](Images/hunger_and_stored_calories.png)
 
-**Hunger** drains over time and is filled up by eating, just like in the regular game.
-When the hunger bar sinks below 20%, you'll slowly start to take starvation damage.
-How much damage you take depends on how hungry you are: At first, you'll barely take any damage.
-But if you starve yourself for too long, you can take up to 5% damage per hour.
+**Hunger** works like the standard bar — it drains over time and refills when you eat.  
+When hunger drops below 20%, you start taking starvation damage (up to −5% condition per hour at the worst).
 
-**Stored calories**, on the other hand, represent the player's body fat and thus change rather slowly.
-In total, one can store up to 20 000 calories in body fat, which is about a week's worth of energy.
-Staying well-nourished by keeping the hunger bar full (indicated by a small, green plus sign) for some time will slowly accumulate stored calories.
-If you're hungry (indicated by a red minus sign), on the other hand, the stored calories are slowly drained into the hunger bar.
+**Stored calories** represent body fat and change slowly.  
+You can store up to **20 000 calories** — roughly a week's worth of energy.
 
-That means that if you have lots and lots of stored calories, your hunger bar won't empty all the way,
-shielding you from most starvation damage. If you have very few stored calories,
-on the other hand, you'll find yourself starving very quickly.
+- Staying **well-fed** (hunger bar above 60%, shown by a green **+**) slowly builds up your fat reserves.  
+- Going **hungry** (hunger bar below 35%, shown by a red **−**) slowly drains reserves back into the hunger bar.
+
+This means that large fat reserves protect you from starvation — but burning through them leaves you vulnerable.
 
 > ![Hunger bar fill levels](Images/hunger_bar_fill_levels.png)
 
-Finally, having lots of stored calories (read: body fat) also gives you a small warmth bonus of up to 2 °C.
-But if you've used up your calorie store, your body won't have enough energy to keep your body warm,
-resulting in a reduction of your "Feels like" temperature by up to 3 °C.
+**Body fat also affects temperature:**  
+- Full reserves: up to **+2 °C** warmth bonus  
+- Depleted reserves: up to **−3 °C** warmth penalty
 
-### Gameplay Effects
+---
 
-#### No more hibernation
+## Gameplay Effects
 
-Calories can no longer simply be "lost" by completely draining the hunger bar.
-The emptier the hunger bar gets, the more calories will be consumed from the calorie store instead.
+### No more hibernation
 
-You *can* still starve yourself during the day and eat before sleeping to regain
-some health – but only for some time. The longer you starve yourself, the emptier
-your calorie store gets and the faster your hunger bar will drain. This leads to
-more and more starvation damage, which you won't be able to compensate for by sleeping.
+You can no longer exploit the hunger system by starving during the day and eating before sleep.  
+The emptier your hunger bar, the more calories are pulled from your fat reserves instead.  
+Over time your reserves deplete, starvation damage accelerates, and sleep can no longer compensate.
 
-#### Keeping yourself fed is a challenge
+### Keeping yourself fed is a real challenge
 
-Only having to consume 600 calories per day really made gathering enough food to
-survive trivial, even in Interloper. By not being able to cheat the hunger system,
-survival is much more of a challenge.
+Surviving on 600 calories per day made food gathering trivial even in Interloper.  
+With HungerRevamped, you must actually maintain a proper calorie intake to stay healthy.
 
-If HungerRevamped still doesn't make this aspect of the game interesting enough,
-consider getting [WildlifeBegone](https://github.com/zeobviouslyfakeacc/WildlifeBegone/releases).
-This mod makes wildlife much rarer, delaying (or maybe even getting rid of) that point
-in the game where you find yourself with a huge pile of food and nothing to do.
+If you want an even greater food challenge, consider installing
+[WildlifeBegone](https://github.com/zeobviouslyfakeacc/WildlifeBegone/releases) —
+it makes wildlife much rarer, so you can't simply hunt your way to infinite food.
 
-#### Start of the game
+### Start of the game
 
-You'll start with 12 000 stored calories. That means that you'll have a buffer period at the start
-of the game during which you don't need to consume much food. This is especially useful in Interloper,
-where you find very little food until you can craft a bow and hunt game.
+You begin with **12 000 stored calories**, giving you a buffer before food becomes critical.  
+In Custom Mode, the starting amount is configurable.
 
-If you're playing a custom mode game, you can also customize how many calories you start with.
+### Travelling
 
-#### Travelling
+High fat reserves mean you can travel light — less food to carry, more room for gear.  
+The warmth bonus also helps when spending extended time outdoors.
 
-Having many stored calories also comes in handy when you want to travel to – or find loot in – another region.
-Thanks to those stored calories, you won't need to bring as much food, so you'll have more space to carry
-more important items. The warmth bonus certainly also helps when you need to spend lots of time outside.
+### Sleeping, fishing, harvesting, breaking down objects
 
-#### Sleeping, fishing, harvesting, breaking down objects
+All activity screens now show your **hunger bar percentage and stored calories after the interaction**,  
+instead of raw calories burned. This makes planning much more meaningful.
 
-When interacting with the world, you were usually shown how many calories
-you'd burn and how many calories were still left in your hunger bar.
-With HungerRevamped installed, these two stats aren't of much use.
-Instead, all of these screens will now show how full your hunger bar is
-and how many calories are stored in body fat **after** that interaction.
+When sleeping, keep your hunger bar above 20% to allow health regeneration.
 
-This is especially important when **sleeping**. To let your health regenerate,
-you need to avoid starvation. You should thus ensure that your hunger bar stays
-more than 20% full – if possible.
+### Cooking Skill Points
 
-#### Cooking Skill Points
+- Cooking **ruined food** gives no skill points.
+- Cooking a **partial portion** of meat gives a proportional chance of a skill point.  
+  (e.g., cooking 0.5 kg of meat → 50% chance of a point)
 
-Cooking ruined food gives no skill points. Cooking a partial portion (less than 1 kilogram) of meat gives a corresponding
-chance of awarding a skill. In other words, cooking 5 kilograms of meat gives 5 skill points (on average) regardless
-of how you cook it.
+### Delayed Food Poisoning
 
-#### Delayed Food Poisoning
+Food poisoning has an incubation period of **4–16 hours** — you won't get sick instantly.  
+If you take antibiotics before symptoms appear, there is a chance the poisoning is prevented.
 
-Hunger Revamped implements a delayed food poisoning system. This means that you won't get food poisoning right away,
-but instead it shows several hours later.
+### Gradual Food Poisoning Probability
 
-#### Realistic Food Poisoning Setting
+The risk of food poisoning scales gradually with the food's condition (75%+ is safe; 15%− is high risk)  
+and with how much you eat. Eating half a portion is roughly half as likely to cause poisoning.
 
-In addition, there is a realistic food poisoning setting which makes the probability of food poisoning gradually
-increase as condition decreases. Under this setting, food poisoning probability is also scaled by the proportion eaten.
-In other words, eating half as much is half as likely to give you food poisoning.
+### Ruined Food
 
-There is also a setting to remove the strange immunity to food poisoning at Cooking Level 5; but this is not enabled by default.
+- **Ruined food is inedible** by default (toggle in settings).
+- **Cooking ruined food** does not restore its condition (toggle in settings).
+- **Canned food** can be harvested for a recycled can even when ruined.
 
-#### Ruined Food Settings
+---
 
-There are settings to make ruined food inedible and/or uncookable.
+## Settings
 
-#### Harvestable Cans
+All settings are accessible via **ModSettings** in the main menu or pause menu.
 
-Canned food items can be harvested for their recycled can if the player cannot (or doesn't want to) eat them.
+| Section | Setting | Default |
+|---|---|---|
+| Ruined Food | Can eat ruined food | Off |
+| Ruined Food | Can cook ruined food | Off |
+| Food Poisoning | Delayed food poisoning | On |
+| Food Poisoning | Gradual poisoning probability | On |
+| Food Poisoning | Remove Cooking Lv.5 immunity | Off |
+| Cooking | Fix cooking skill exploit | On |
+| Cooking | Cooking doubles condition | On |
 
-### Installation
+Settings are available in **English** and **Russian**. You can add more languages by placing a `localization.json` file in `UserData/HungerRevamped/`.
 
-1. If you haven't done so already, install MelonLoader by downloading and running [MelonLoader.Installer.exe](https://github.com/HerpDerpinstine/MelonLoader/releases/latest/download/MelonLoader.Installer.exe)
-2. If you haven't done so already, install [ModSettings](https://github.com/zeobviouslyfakeacc/ModSettings) v1.6 or newer
-3. If you haven't done so already, install [ModData](https://github.com/dommrogers/ModData)
-4. Download the latest version of `HungerRevamped.dll` from the [releases page](https://github.com/zeobviouslyfakeacc/HungerRevamped/releases)
-5. Move `HungerRevamped.dll` into the Mods folder in your TLD install directory
+---
 
-You can install and use Hunger Revamped in old saves. You'll start with 10 000 stored calories.
+## Installation
 
-You can always uninstall Hunger Revamped and continue playing your save like usual, too,
-but the amount of calories stored in body fat will be lost.
+1. Install [MelonLoader](https://github.com/HerpDerpinstine/MelonLoader/releases/latest/download/MelonLoader.Installer.exe)
+2. Install [ModSettings](https://github.com/zeobviouslyfakeacc/ModSettings) **v2.2.5 or newer**
+3. Install [ModData](https://github.com/dommrogers/ModData)
+4. Download `HungerRevamped.dll` from the [releases page](https://github.com/NicoriciN89/HungerRevamped/releases)
+5. Place `HungerRevamped.dll` in your TLD `Mods/` folder
 
-### Recommendations
+**Existing saves are supported.** Installing on an old save starts you with 10 000 stored calories.  
+Uninstalling is safe — your save continues normally, but stored calorie data is lost.
 
-- Don't play on Pilgrim. A better hunger system really doesn't matter if you only consume 50 calories per hour.
-- Consider getting [EnableStatusBarPercentages](https://github.com/zeobviouslyfakeacc/EnableStatusBarPercentages/releases).
-  It lets you see the exact fill levels of your status bar in the status / first aid screen.
+---
+
+## Recommendations
+
+- Avoid Pilgrim mode — a better hunger system matters little at 50 calories per hour.
+- Install [EnableStatusBarPercentages](https://github.com/zeobviouslyfakeacc/EnableStatusBarPercentages/releases) to see exact hunger bar percentages.
+
+---
+
+## Building from source
+
+Requires .NET 6 SDK and a copy of *The Long Dark* with MelonLoader installed.
+
+1. Clone the repository
+2. Open `HungerRevamped.csproj` and set `<TheLongDarkPath>` to your TLD install directory
+3. Run `dotnet build -c Release`
+
+The compiled DLL is automatically copied to your `Mods/` folder after a successful build.
+
+---
+
+## License
+
+MIT — see [LICENSE](LICENSE).  
+Original mod by [BaltaZar](https://github.com/zeobviouslyfakeacc/HungerRevamped).
