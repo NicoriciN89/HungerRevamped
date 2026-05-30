@@ -1,6 +1,6 @@
 # HungerRevamped — mod for *The Long Dark*
 
-> **Fork of the original [HungerRevamped](https://github.com/zeobviouslyfakeacc/HungerRevamped) by BaltaZar.**  
+> **Fork of the original [HungerRevamped](https://github.com/BaltaZar-7/HungerRevamped) by BaltaZar.**  
 > v2.2.0 adds stability fixes, null safety, performance improvements, and full EN/RU localization.  
 > See [CHANGELOG.md](CHANGELOG.md) for the full list of changes.
 
@@ -151,4 +151,4 @@ The compiled DLL is automatically copied to your `Mods/` folder after a successf
 ## License
 
 MIT — see [LICENSE](LICENSE).  
-Original mod by [BaltaZar](https://github.com/zeobviouslyfakeacc/HungerRevamped).
+Original mod by [BaltaZar](https://github.com/BaltaZar-7/HungerRevamped).

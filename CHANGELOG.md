@@ -36,4 +36,4 @@
 
 ---
 
-## [2.1.0] - original release by BaltaZar
+## [2.1.0] - original release by [BaltaZar-7](https://github.com/BaltaZar-7/HungerRevamped)
